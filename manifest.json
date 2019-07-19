@@ -1,0 +1,23 @@
+{
+	"manifest_version": 2,
+	"name": "Hit tracker",
+	"description": "Zachytávání požadavků na hity",
+	"version": "0.1",
+	"author": "Vilda Lipold",
+	"homepage_url": "https://github.com/mdn/webextensions-examples/tree/master/devtools-panels",
+	"icons": {
+		"48": "icons/logs-48.png",
+		"96": "icons/logs-96.png"
+	},
+	"permissions": [
+		"webRequest",
+		"webRequestBlocking",
+		"<all_urls>"
+	],
+	"devtools_page": "devtools/devtools-page.html",
+	"background": {
+		"scripts": [
+			"bgjs/background.js"
+		]
+	}
+}
