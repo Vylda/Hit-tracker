@@ -40,6 +40,15 @@ table tbody td {
 	border-right: 1px dotted #999;
 }
 
+table tbody tr.error {
+	background-color: rgb(255, 215, 177);
+}
+
+table tbody td.error {
+	font-weight: bold;
+	color: #900;
+}
+
 table tbody td:last-child {
 	border-right: none;
 	cursor: pointer;

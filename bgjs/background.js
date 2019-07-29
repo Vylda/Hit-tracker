@@ -8,6 +8,12 @@ const filter = {
 
 
 function onBeforeRequest(request) {
+
+	let regex = /^https?:\/\/h.imedia.cz\/hit\//;
+	if (!regex.test(request.url)) {
+		return;
+	}
+
 	let tabId = request.tabId;
 	let port = ports[tabId];
 	if (!port) { return; } // no devtool avail, sorry
@@ -39,10 +45,8 @@ function onBeforeSendHeaders(request) {
 	let record = requests[id];
 	if (!record) { return; }
 	delete requests[id];
-	let regex = /^https?:\/\/h.imedia.cz\/hit\//;
-	if (regex.test(record.url)) {
-		ports[record.tabId].postMessage(record);
-	}
+
+	ports[record.tabId].postMessage(record);
 }
 
 function onErrorOccurred(details) {

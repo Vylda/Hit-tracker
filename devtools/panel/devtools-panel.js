@@ -1,6 +1,5 @@
 const tbody = document.querySelector("tbody");
 const tabId = browser.devtools.inspectedWindow.tabId;
-let rows = {};
 
 function toConsole(data) {
 	let cmd = `inspect(${JSON.stringify(data)})`;
@@ -22,7 +21,7 @@ function buildRequest(row, d) {
 			});
 
 			let rowNumber = row.insertCell();
-			rowNumber.textContent = Object.keys(rows).length;
+			rowNumber.textContent = row.parentNode.children.length;
 
 			let actionCell = row.insertCell();
 			actionCell.textContent = action;
@@ -65,18 +64,12 @@ function buildRequest(row, d) {
  * @param {string} [record.url]
  */
 function onMessage(record) {
-	let id = record.id;
-	let row = rows[id];
-
-	if (row) { /* response */
-		delete rows[id];
-	} else if (!record.error && "url" in record) { /* request */
+	if (!record.error && "url" in record) { /* request */
 		let url = new URL(record.url);
 		if (url && url.searchParams) {
 			let d = url.searchParams.get("d");
 			if (d) {
 				let row = tbody.insertRow();
-				rows[id] = row;
 
 				buildRequest(row, d);
 
@@ -84,6 +77,17 @@ function onMessage(record) {
 				node.scrollTop = node.scrollHeight;
 			}
 		}
+	} else {
+		let row = tbody.insertRow();
+		row.className = "error";
+
+		let rowNumber = row.insertCell();
+		rowNumber.textContent = row.parentNode.children.length;
+
+		let errorCell = row.insertCell();
+		errorCell.className = "error";
+		errorCell.setAttribute("colspan", 3);
+		errorCell.textContent = record.error;
 	}
 }
 
@@ -94,7 +98,6 @@ function syncTheme() {
 
 document.querySelector("#clear").onclick = () => {
 	tbody.innerHTML = "";
-	rows = {};
 }
 
 browser.devtools.panels.onThemeChanged.addListener(syncTheme);
