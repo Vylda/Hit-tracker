@@ -1,0 +1,12 @@
+{
+	"addons": {
+		"hit.tracker@vilem.lipold.firma.seznam.cz": {
+			"updates": [
+				{
+					"version": "1.0",
+					"update_link": "https://raw.githubusercontent.com/Vylda/Hit-tracker/1.0/package/hit_tracker-1.0-fx.xpi"
+				}
+			]
+		}
+	}
+}

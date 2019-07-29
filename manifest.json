@@ -9,6 +9,12 @@
 		"48": "icons/logs-48.png",
 		"96": "icons/logs-96.png"
 	},
+	"applications": {
+		"gecko": {
+			"id": "hit.tracker@vilem.lipold.firma.seznam.cz",
+			"update_url": "https://raw.githubusercontent.com/Vylda/Hit-tracker/master/package/updates.json"
+		}
+	},
 	"permissions": [
 		"webRequest",
 		"webRequestBlocking",
