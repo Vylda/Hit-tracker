@@ -5,7 +5,7 @@
 
 ## Použití
 
-Hit tracker je nástroj určený pro snazší zobrazení požadavků na logování Seznam.cz (https://h.imedia.com/hit). Po nainstalovávání do Firefoxu se objeví nový panel ve Vývojářských nástrojích (otevřou se pomocí klávesy F12)
+Hit tracker je nástroj určený pro snazší zobrazení požadavků na logování Seznam.cz (https://h.imedia.cz/hit). Po nainstalovávání do Firefoxu se objeví nový panel ve Vývojářských nástrojích (otevřou se pomocí klávesy F12).
 
 ## Aktuální verze a download
 
