@@ -1,6 +1,5 @@
-# Hit tracker
+# ![](https://raw.githubusercontent.com/Vylda/Hit-tracker/master/icons/logs-48.png) Hit tracker
 
-![](https://raw.githubusercontent.com/Vylda/Hit-tracker/master/icons/logs-96.png)<br />
 ![](https://raw.githubusercontent.com/Vylda/Hit-tracker/master/resources/screenshot.png)
 
 
