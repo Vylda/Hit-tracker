@@ -2,7 +2,7 @@
 	"manifest_version": 2,
 	"name": "Hit tracker",
 	"description": "Hit tracker for developers",
-	"version": "1.0",
+	"version": "1.1",
 	"author": "Vilda Lipold, Seznam a. s.",
 	"homepage_url": "https://github.com/Vylda/Hit-tracker",
 	"icons": {

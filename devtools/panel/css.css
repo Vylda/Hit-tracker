@@ -1,6 +1,7 @@
 :root {
 	font-family: Verdana, Geneva, Tahoma, sans-serif;
 	font-size: 11px;
+	background-color: whitesmoke;
 }
 
 #clear {
@@ -17,9 +18,22 @@ table thead th {
 	font-weight: bold;
 	text-align: left;
 	padding: 10px;
-	border-bottom: 3px double #999;
+	background-color: whitesmoke;
 	min-width: 150px;
 	font-size: 110%;
+	position: sticky;
+	top: 0;
+}
+
+table thead th:after {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	border-bottom: 3px double #999;
 }
 
 table thead th:first-child {
@@ -28,6 +42,7 @@ table thead th:first-child {
 
 table tbody tr {
 	border-bottom: 1px solid #999;
+	background-color: white;
 }
 
 table tbody tr:nth-child(even) {
