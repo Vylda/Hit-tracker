@@ -1,5 +1,7 @@
 const tbody = document.querySelector("tbody");
 const tabId = browser.devtools.inspectedWindow.tabId;
+const filterValue = document.createElement("input");
+const isRegexInput = document.createElement("input");
 
 function toConsole(data) {
 	let cmd = `inspect(${JSON.stringify(data)})`;
@@ -54,6 +56,26 @@ function buildRequest(row, d) {
 	}
 }
 
+function filterData(text) {
+	filterValue.removeAttribute("style");
+	if (!text) { return true; }
+	let filterText = filterValue.value.trim();
+	if (!filterText) { return true; }
+	if (isRegexInput.checked) {
+		try {
+			let re = new RegExp(filterText);
+			return re.test(text);
+		} catch (err) {
+			filterValue.style.color = "red";
+			return true;
+
+		}
+		return false;
+	} else {
+		return text.includes(filterText);
+	}
+	return false;
+}
 
 /**
  * @param {object} record
@@ -68,7 +90,8 @@ function onMessage(record) {
 		let url = new URL(record.url);
 		if (url && url.searchParams) {
 			let d = url.searchParams.get("d");
-			if (d) {
+			if (d && filterData(d)) {
+
 				let row = tbody.insertRow();
 
 				buildRequest(row, d);
@@ -96,10 +119,33 @@ function syncTheme() {
 }
 
 
-document.querySelector("#clear").onclick = () => {
+document.querySelector("#clear").addEventListener("click", () => {
 	tbody.innerHTML = "";
-}
+});
 
+{
+	let filterContainer = document.createElement("div");
+	filterContainer.id = "filter-container";
+	let label = document.createElement("label");
+	isRegexInput.setAttribute("type", 'checkbox');
+	filterValue.setAttribute("type", "text");
+	filterContainer.appendChild(filterValue);
+	label.appendChild(isRegexInput);
+	label.appendChild(document.createTextNode("RegExp"));
+	filterContainer.appendChild(label);
+	let isOpen = false;
+
+	document.querySelector("#filter").addEventListener("click", () => {
+		if (!isOpen) {
+			document.body.appendChild(filterContainer);
+		} else {
+			if (document.body.contains(filterContainer)) {
+				filterContainer.remove();
+			}
+		}
+		isOpen = !isOpen;
+	});
+}
 browser.devtools.panels.onThemeChanged.addListener(syncTheme);
 
 syncTheme();
