@@ -35,6 +35,11 @@ Pokud používáte prohlížeč Chrome, použijte [Hit tracker for Chrome](https
 
 ## Aktuální verze a download
 
+### 1.2
+[download](https://raw.githubusercontent.com/Vylda/Hit-tracker/1.2/package/hit_tracker-1.2-fx.xpi)
+#### Changelog
+* filtrování
+
 ### 1.1
 [download](https://raw.githubusercontent.com/Vylda/Hit-tracker/1.1/package/hit_tracker-1.1-fx.xpi)
 #### Changelog
