@@ -44,7 +44,7 @@ Pokud používáte prohlížeč Chrome, použijte [Hit tracker for Chrome](https
 [download](https://raw.githubusercontent.com/Vylda/Hit-tracker/1.1/package/hit_tracker-1.1-fx.xpi)
 #### Changelog
 * drobné změny ve vzhledu (plovoucí hlavička)
-* lepší zobrazení hodnot typu Opbjekt a Array
+* lepší zobrazení hodnot typu Objekt a Array
 
 ### 1.0
 [download](https://raw.githubusercontent.com/Vylda/Hit-tracker/1.0/package/hit_tracker-1.0-fx.xpi)
