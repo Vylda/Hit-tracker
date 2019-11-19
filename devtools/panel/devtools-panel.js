@@ -2,6 +2,7 @@ const tbody = document.querySelector("tbody");
 const tabId = browser.devtools.inspectedWindow.tabId;
 const filterValue = document.createElement("input");
 const isRegexInput = document.createElement("input");
+const isCaseSensitive = document.createElement("input");
 
 function toConsole(data) {
 	let cmd = `inspect(${JSON.stringify(data)})`;
@@ -56,25 +57,38 @@ function buildRequest(row, d) {
 	}
 }
 
+
+function testRegex(re) {
+	filterValue.removeAttribute("style");
+	if (!re) {
+		return true;
+	}
+	try {
+		let reo = new RegExp(re.trim(), isCaseSensitive.checked ? "" : "i");
+		return reo;
+	} catch (e) {
+		filterValue.style.color = "red";
+		return false;
+	}
+}
+
 function filterData(text) {
 	filterValue.removeAttribute("style");
 	if (!text) { return true; }
 	let filterText = filterValue.value.trim();
 	if (!filterText) { return true; }
-	if (isRegexInput.checked) {
-		try {
-			let re = new RegExp(filterText);
-			return re.test(text);
-		} catch (err) {
-			filterValue.style.color = "red";
-			return true;
 
+	if (isRegexInput.checked) {
+		let re = testRegex(filterText);
+		if (re) {
+			return re.test(text);
 		}
-		return false;
-	} else {
+		return true;
+	}
+	if (isCaseSensitive.checked) {
 		return text.includes(filterText);
 	}
-	return false;
+	return text.toLowerCase().includes(filterText.toLowerCase());
 }
 
 /**
@@ -101,6 +115,9 @@ function onMessage(record) {
 			}
 		}
 	} else {
+		if (filterValue.value.trim()) {
+			return;
+		}
 		let row = tbody.insertRow();
 		row.className = "error";
 
@@ -123,16 +140,47 @@ document.querySelector("#clear").addEventListener("click", () => {
 	tbody.innerHTML = "";
 });
 
+
 {
 	let filterContainer = document.createElement("div");
 	filterContainer.id = "filter-container";
-	let label = document.createElement("label");
-	isRegexInput.setAttribute("type", 'checkbox');
 	filterValue.setAttribute("type", "text");
+	filterValue.addEventListener("input", (e) => {
+		if (isRegexInput.checked) {
+			testRegex(filterValue.value);
+		} else {
+			filterValue.removeAttribute("style");
+		}
+	});
 	filterContainer.appendChild(filterValue);
+
+	let label = document.createElement("label");
+	label.title = "Jde o regulární výraz (RegExp)."
+	isRegexInput.setAttribute("type", 'checkbox');
+	isRegexInput.addEventListener("change", () => {
+		if (isRegexInput.checked) {
+			testRegex(filterValue.value);
+		} else {
+			filterValue.removeAttribute("style");
+		}
+	})
 	label.appendChild(isRegexInput);
 	label.appendChild(document.createTextNode("RegExp"));
 	filterContainer.appendChild(label);
+
+	let labelCS = document.createElement("label");
+	labelCS.title = "Citlivé na velikost písmen."
+	isCaseSensitive.setAttribute("type", 'checkbox');
+	labelCS.appendChild(isCaseSensitive);
+	labelCS.appendChild(document.createTextNode("aA"));
+	filterContainer.appendChild(labelCS);
+
+	let infobox = document.createElement("div");
+	infobox.className = "infobox";
+	infobox.textContent = "i";
+	infobox.title = "Pokud nejde do filtru nic napsat, vypněte v nastavení volbu „Psaním vyhledávat text na stránce“ (Možnosti → Obecné → Prohlížení)."
+	filterContainer.appendChild(infobox);
+
 	let isOpen = false;
 
 	document.querySelector("#filter").addEventListener("click", () => {
