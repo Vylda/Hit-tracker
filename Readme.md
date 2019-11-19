@@ -3,6 +3,7 @@
 ![](https://raw.githubusercontent.com/Vylda/Hit-tracker/master/resources/screenshot.png)
 
 
+
 ## Použití
 
 Hit tracker je nástroj určený pro snazší zobrazení požadavků na logování Seznam.cz (https://h.imedia.cz/hit). Po nainstalovávání do Firefoxu se objeví nový panel Hit tracker ve Vývojářských nástrojích (otevřou se pomocí klávesy F12).
@@ -13,10 +14,12 @@ Po kliknutí na políčko ve sloupci Parameter value se data zobrazí jako objek
 
 V pravém dolním rohu jsou dvě tlačítka:
 
-* **Filtr** - otevře skryje okno filtru;
-* **Clear** - smaže všechna data z tabulky.
+* <img style="vertical-align: middle;" src="https://raw.githubusercontent.com/Vylda/Hit-tracker/master/resources/filter.png"> **Filtr** -  otevře skryje okno filtru;
+* <img style="vertical-align: middle;" src="https://raw.githubusercontent.com/Vylda/Hit-tracker/master/resources/clear.png"> **Clear** - smaže všechna data z tabulky.
 
 ### Filtr
+
+![](https://raw.githubusercontent.com/Vylda/Hit-tracker/master/resources/filterdata.png)
 
 V okně filtru můžete zadat do políčka text, při jehož  výskytu v datech se zobrazí odesílaná data.
 
