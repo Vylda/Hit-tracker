@@ -9,6 +9,10 @@
 				{
 					"version": "1.1",
 					"update_link": "https://raw.githubusercontent.com/Vylda/Hit-tracker/1.1/package/hit_tracker-1.1-fx.xpi"
+				},
+				{
+					"version": "1.1",
+					"update_link": "https://raw.githubusercontent.com/Vylda/Hit-tracker/1.2/package/hit_tracker-1.2-fx.xpi"
 				}
 			]
 		}
